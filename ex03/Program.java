@@ -16,7 +16,7 @@ class Program {
         while (scanner.hasNext()) {
             String input = scanner.nextLine();
             sequence.add(truckOrder(input));
-            if (sequence.stream.){
+            if (sequence.){
                 System.out.println("BRAVO");
                 break;
             }
