@@ -1,3 +1,4 @@
+
 class Program {
     private static final int LAST_SEQUENCE = 42;
 
@@ -6,7 +7,7 @@ class Program {
         printResult(sumDigits(SUM_DIGITS));
     }
 
-    public static void printResult(int sumDigits){
+    public static void printResult(int sumDigits) {
         System.out.println(sumDigits);
     }
 
