@@ -118,6 +118,7 @@ class Program {
     public static int map(int x, int in_min, int in_max, int out_min, int out_max) {
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     }
+    
     public static List<Integer> getGradesFromMap(Map<List<Integer>, List<Integer>> map, int week) {
         List<Integer> var = map.entrySet().stream()
                 .filter(entry -> entry.getKey().contains(week))
@@ -126,12 +127,4 @@ class Program {
                 .orElse(Collections.emptyList());
         return var;
     }
-
-    // public static Integer getGradesFromMap(Map<List<Integer>, List<Integer>> map,
-    // int week) {
-    // Integer var = holder.entrySet().stream()
-    // .filter(entry -> entry.getKey().contains(week))
-    // .map(Map.Entry::getValue).collect(Collectors.????);
-    // return var;
-    // }
 }
