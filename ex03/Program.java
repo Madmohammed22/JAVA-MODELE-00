@@ -39,7 +39,7 @@ class Program {
     public static boolean proccessAll(String input, Scanner scanner) {
         if (!input.equals(LAST_SEQUENCE_STRING)) {
             if (containsTarget(input, 0) && weeks.stream().findFirst().map(Collections::singletonList)
-                            .orElse(Collections.emptyList()).contains(WeekCounter + 1)) {
+                    .orElse(Collections.emptyList()).contains(WeekCounter + 1)) {
                 input = scanner.nextLine();
                 int[] getGrades = new int[1];
                 getGrades[0] = 0;
@@ -47,16 +47,10 @@ class Program {
                     grades.add(getGrades[0]);
                     List<Integer> weekNode = weeks.stream().findFirst().map(Collections::singletonList)
                             .orElse(Collections.emptyList());
-                    // List <Integer> firstNode =
                     // weeks.stream().findFirst().orElse(Collections.emptyList());
                     List<Integer> gradeNode = grades.stream().findFirst().map(Collections::singletonList)
                             .orElse(Collections.emptyList());
-                    // if (!weekNode.contains(WeekCounter + 1)){
-                    // System.out.println("Invalid");
-                    // System.exit(-1);
-                    // }
                     holder.put(weekNode, gradeNode);
-                    // System.out.println("--->" + firstNode + " ---> " + firstNode2);
                     weeks.clear();
                     grades.clear();
                     WeekCounter++;
@@ -81,14 +75,17 @@ class Program {
         String[] substr = input.split("\\s+");
         if (substr.length > 5)
             return false;
-        for (String current : substr){
-            try{
+        for (String current : substr) {
+            try {
+                Integer ifGradeValid = Integer.parseInt(current);
                 result[0] += Integer.parseInt(current);
-            } catch(NumberFormatException e){
+                if (ifGradeValid == 0 || !(ifGradeValid >= 1 && ifGradeValid <= 9)){
+                    return false;
+                }
+            } catch (NumberFormatException e) {
                 return false;
             }
         }
-            
         return true;
     }
 
@@ -110,35 +107,17 @@ class Program {
     }
 
     public static void visualizeStudentsProgress(int grades) {
-        if (grades >= 0 && grades <= 10) {
-            for (int i = 0; i < 2; i++) {
+        int markerCount = grades;
+        markerCount =  map(markerCount, 1, 45, 1, 8);
+            for (int j = 0; j < markerCount; j++) {
                 System.out.print("=");
             }
-            System.out.println(">");
-        } else if (grades >= 10 && grades <= 20) {
-            for (int i = 0; i < 3; i++) {
-                System.out.print("=");
-            }
-            System.out.println(">");
-        }
-
-        else if (grades >= 20 && grades <= 30) {
-            for (int i = 0; i < 4; i++) {
-                System.out.print("=");
-            }
-            System.out.println(">");
-        }
-
-        else if (grades >= 30 && grades <= 40) {
-            for (int i = 0; i < 6; i++) {
-                System.out.print("=");
-            }
-            System.out.println(">");
-        } else
-            return;
-
+        System.out.println(">");
     }
 
+    public static int map(int x, int in_min, int in_max, int out_min, int out_max) {
+        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    }
     public static List<Integer> getGradesFromMap(Map<List<Integer>, List<Integer>> map, int week) {
         List<Integer> var = map.entrySet().stream()
                 .filter(entry -> entry.getKey().contains(week))
@@ -156,6 +135,3 @@ class Program {
     // return var;
     // }
 }
-
-// weeks.forEach((v) -> System.out.print(v + " "));
-// holder.forEach((k, v) -> System.out.println(k + " " + v));
