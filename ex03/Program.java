@@ -127,9 +127,5 @@ class Program {
                 .orElse(Collections.emptyList());
         return var;
     }
-
-    public static Map<Integer, String> returnPairs(String name){
-        Map<Integer, String> map = new HashMap<Integer,String>();
-        return map;
-    }
+    
 }
